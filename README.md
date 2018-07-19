@@ -7,6 +7,9 @@ I have implemented:
 -Guard
 -Interceptor
 -Firebase for Login
+-Next issue: 
+  https://medium.com/frontend-coach/angular-router-animations-what-they-dont-tell-you-3d2737a7f20b
+  https://github.com/sulco/angular-router-children-animation
 
 
 ## Development server
