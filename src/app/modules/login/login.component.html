@@ -1,0 +1,20 @@
+<h2>Login Here</h2>
+<form [formGroup]="formLogin">
+  <div class="col-lg-4">
+
+    <label class="center-block">Email:
+      <input class="form-control" formControlName="email" class="form-control" required>
+    </label>
+  </div>
+  <div class="col-lg-4">
+
+    <label class="center-block">Password:
+      <input class="form-control" formControlName="password" type="password" class="form-control" required>
+    </label>
+  </div>
+
+  <div class="col-lg-4 button">
+    <button class="btn btn-default" (click)="login()" [disabled]="formLogin.invalid">Login</button>
+  </div>
+
+</form>
