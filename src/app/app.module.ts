@@ -11,12 +11,14 @@ import {AppComponent} from './app.component';
 import {AuthInterceptor} from './core/interceptor/auth-interceptor';
 import {ErrorInterceptor} from './core/interceptor/error.interceptor';
 import {AppRoutingModule} from './app-routing.module';
+import {HeaderComponent} from './core/header/header.component';
 
 firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,7 @@ firebase.initializeApp(environment.firebase);
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
+    AngularFireAuthModule
   ],
   providers: [
     {

@@ -1,0 +1,5 @@
+<nav *ngIf="isLoggedIn$ | async">
+  <a routerLink="/home" routerLinkActive="active">Home</a>
+  <a routerLink="/home/first" routerLinkActive="active">First</a>
+  <a routerLink="" (click)="onLogout()" routerLinkActive="active" *ngIf="isLoggedIn$ | async">Logout</a>
+</nav>

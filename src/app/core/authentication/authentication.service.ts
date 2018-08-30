@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
 import * as firebase from 'firebase/app';
+import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 import {User} from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
   private currentUser: User = {
     isAuthenticated: false,
@@ -13,6 +16,9 @@ export class AuthenticationService {
     token: '',
     refreshToken: ''
   };
+
+  constructor(private router: Router) {
+  }
 
   login(value: any) {
     return new Promise<any>((resolve, reject) => {
@@ -28,19 +34,25 @@ export class AuthenticationService {
               this.currentUser.token = data;
             });
 
+          this.loggedIn.next(true);
+          this.router.navigate(['home']);
+
         }, err => reject(err));
     });
   }
 
-  isLogged() {
-    return JSON.parse(localStorage.getItem('currentUser')).isAuthenticated;
+  get isLogged() {
+    // return JSON.parse(localStorage.getItem('currentUser')) ? JSON.parse(localStorage.getItem('currentUser')).isAuthenticated : false;
+    return this.loggedIn.asObservable();
   }
 
-  get token() {
+  token() {
     return JSON.parse(localStorage.getItem('currentUser')).token;
   }
 
   logout() {
     localStorage.removeItem('currentUser');
+    this.loggedIn.next(false);
+    this.router.navigate(['']);
   }
 }

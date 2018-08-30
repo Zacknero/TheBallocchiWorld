@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
 
 import {AuthenticationService} from '../../core/authentication/authentication.service';
 
@@ -13,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   formLogin: FormGroup;
 
-  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -29,13 +28,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     const user = {email: this.formLogin.value.email, password: this.formLogin.value.password};
-    this.authenticationService.login(user)
-      .then(() => {
-        this.router.navigate(['home']);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.authenticationService.login(user);
   }
 
 }

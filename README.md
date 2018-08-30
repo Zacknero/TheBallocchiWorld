@@ -8,8 +8,7 @@ I have implemented:
 -Interceptor
 -Firebase for Login
 -Next issue: 
-  https://medium.com/frontend-coach/angular-router-animations-what-they-dont-tell-you-3d2737a7f20b
-  https://github.com/sulco/angular-router-children-animation
+  After login view Home Page with Menu routing - Completed: 60%
 
 
 ## Development server

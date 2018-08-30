@@ -3,6 +3,7 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Observable} from 'rxjs';
 
 import {AuthenticationService} from '../authentication/authentication.service';
+import {map, take} from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -12,14 +13,26 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this.authenticationService.isLogged()) {
+    /*if (this.authenticationService.isLogged()) {
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${this.authenticationService.token()}`
         }
       });
-    }
-
+    }*/
+    this.authenticationService.isLogged
+      .pipe(
+        take(1),
+        map((isLogged: boolean) => {
+          if (isLogged) {
+            req = req.clone({
+              setHeaders: {
+                Authorization: `Bearer ${this.authenticationService.token()}`
+              }
+            });
+          }
+        })
+      );
     return next.handle(req);
   }
 }
