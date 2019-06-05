@@ -15,7 +15,10 @@ const router: Routes = [
     CommonModule,
     RouterModule.forChild(router)
   ],
-  declarations: []
+  exports: [
+    RouterModule
+  ],
+  declarations: [AdminComponent]
 })
 export class AdminModule {
 }

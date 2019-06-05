@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid mt-3">
   <div class="row justify-content-center">
     <div class="col-sm-5">
       <div class="card container-fluid align-middle">
@@ -6,7 +6,6 @@
         <h5 class="card-title">Login Here</h5>
         <div class="card-body">
           <form [formGroup]="formLogin">
-
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -14,7 +13,8 @@
                   <i class="fa fa-envelope"></i>
                 </span>
                 </div>
-                <input type="text" class="form-control" formControlName="email" placeholder="rossi@live.it" required>
+                <input type="text" class="form-control" formControlName="email" placeholder="rossi@live.it" required
+                       [ngClass]="{'is-invalid':formLogin.controls.email.invalid}">
               </div>
             </div>
 
@@ -25,11 +25,12 @@
                   <i class="fa fa-key"></i>
                 </span>
                 </div>
-                <input class="form-control" formControlName="password" type="password" placeholder="rossi" required>
+                <input class="form-control" formControlName="password" type="password" placeholder="rossi" required
+                       [ngClass]="{'is-invalid':formLogin.controls.password.invalid}">
               </div>
             </div>
 
-            <button class="btn btn-default" (click)="login()" [disabled]="formLogin.invalid">Login</button>
+            <button type="button" class="btn btn-light" (click)="login()" [disabled]="formLogin.invalid">Login</button>
 
           </form>
         </div>
