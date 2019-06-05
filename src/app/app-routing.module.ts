@@ -10,21 +10,21 @@ const router: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'login',
-    loadChildren: './modules/login/login.module#LoginModule'
+    path: `login`,
+    loadChildren: () => import(`./modules/login/login.module`).then(m => m.LoginModule)
   },
   {
-    path: 'home',
+    path: `home`,
     canActivate: [AuthGuard],
-    loadChildren: './modules/home/home.module#HomeModule'
+    loadChildren: () => import(`./modules/home/home.module`).then(m => m.HomeModule)
   },
   {
-    path: 'admin',
+    path: `admin`,
     canActivate: [AuthGuard],
     data: {
       expectedRole: 'admin'
     },
-    loadChildren: './modules/admin/admin.module#AdminModule'
+    loadChildren: () => import(`./modules/admin/admin.module`).then(m => m.AdminModule)
   },
   {
     path: '**',
