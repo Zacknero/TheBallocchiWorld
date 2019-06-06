@@ -11,19 +11,19 @@ import {AppComponent} from './app.component';
 import {AuthInterceptor} from './core/interceptor/auth-interceptor';
 import {ErrorInterceptor} from './core/interceptor/error.interceptor';
 import {AppRoutingModule} from './app-routing.module';
-import {HeaderComponent} from './core/header/header.component';
+import {CoreModule} from './core/core.module';
 
 firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    CoreModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),

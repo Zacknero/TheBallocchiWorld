@@ -12,14 +12,6 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    /*if (this.authenticationService.isLogged()) {
-      req = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${this.authenticationService.token()}`
-        }
-      });
-    }*/
     this.authenticationService.isLogged
       .pipe(
         take(1),

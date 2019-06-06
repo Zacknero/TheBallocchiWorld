@@ -1,15 +1,13 @@
 # TheBallocchiWorld
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8 and updated into version 8.0.0.
 
 I have implemented:
 - Basic Folder Structure
 - Guard
-- Interceptor
+- Interceptor (Authentication and Errors) 
 - Firebase for Login
-- Next issue: 
-  - After login view Home Page with Menu routing - Completed: 60%
-
+- Menu Routing with Login, child Login (First Page), Admin Page and Logout
 
 ## Development server
 
