@@ -2,7 +2,7 @@
 
 This project is generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0 and updated into version 8.0.0.
 
-**In this project have NgRx Modules**
+**In this project have NgRx Modules v.7.4.0**
 
 I have implemented:
 - Basic Folder Structure
@@ -10,7 +10,7 @@ I have implemented:
 - Interceptor (Authentication and Errors)
 - Firebase for Login
 - Menu Routing with Login, child Login (First Page), Admin Page and Logout
-- Folder for NgRx modules (Store, Effect and Redux)
+- Folder for NgRx modules (Store, Effect and Redux) with an old syntax for writing the NGRX code
 
 ## Development server
 
