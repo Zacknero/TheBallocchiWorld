@@ -2,7 +2,7 @@
 
 This project is generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0 and updated into version 8.0.0.
 
-**In this project have NgRx Modules v.7.4.0**
+**In this project have NgRx Modules v.8.0.1**
 
 I have implemented:
 - Basic Folder Structure
