@@ -1,28 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 
-import * as fromAuth from '../authentication/store/auth.reducer';
 import * as AuthAction from '../authentication/store/auth.action';
+import {selectAuthAuthenticated} from '../authentication/store/auth.selector';
+import {State} from '../../reducers';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  authState: Observable<fromAuth.State>;
+  authState$: Observable<boolean>;
 
-  constructor(private store: Store<fromAuth.State>) {
-  }
-
-  ngOnInit() {
-    this.authState = this.store.select('auth');
+  constructor(private store: Store<State>) {
+    this.authState$ = this.store.pipe(select(selectAuthAuthenticated));
   }
 
   onLogout() {
-    this.store.dispatch(new AuthAction.Logout());
+    this.store.dispatch(AuthAction.logOut());
   }
 
 }

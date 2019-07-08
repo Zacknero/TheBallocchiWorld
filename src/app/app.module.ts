@@ -7,7 +7,7 @@ import {AngularFireModule} from 'angularfire2';
 import * as firebase from 'firebase';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {RouterState, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import {environment} from '../environments/environment';
@@ -16,7 +16,7 @@ import {AuthInterceptor} from './core/interceptor/auth-interceptor';
 import {ErrorInterceptor} from './core/interceptor/error.interceptor';
 import {AppRoutingModule} from './app-routing.module';
 import {CoreModule} from './core/core.module';
-import {authReducer} from './core/authentication/store/auth.reducer';
+import {metaReducers, ROOT_REDCUCERS} from './reducers';
 import {AuthEffect} from './core/authentication/store/auth.effect';
 
 firebase.initializeApp(environment.firebase);
@@ -34,10 +34,22 @@ firebase.initializeApp(environment.firebase);
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    StoreModule.forRoot({auth: authReducer}),
+    StoreModule.forRoot(ROOT_REDCUCERS, {
+      metaReducers,
+      runtimeChecks: {
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true
+      }
+    }),
     EffectsModule.forRoot([AuthEffect]),
-    StoreRouterConnectingModule,
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    StoreRouterConnectingModule.forRoot({
+      routerState: RouterState.Minimal
+    }),
+    StoreDevtoolsModule.instrument({
+      name: 'The Ballocchi World',
+      logOnly: environment.production
+    })
   ],
   providers: [
     {

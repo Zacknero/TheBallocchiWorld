@@ -4,6 +4,7 @@ import {Store} from '@ngrx/store';
 
 import * as fromAuth from '../../core/authentication/store/auth.reducer';
 import * as AuthAction from '../../core/authentication/store/auth.action';
+import {Credentials} from '../../core/models/user';
 
 @Component({
   selector: 'app-login',
@@ -29,8 +30,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const user = {email: this.formLogin.value.email, password: this.formLogin.value.password};
-    this.store.dispatch(new AuthAction.TrySignin({username: user.email, password: user.password}));
+    const user: Credentials = {username: this.formLogin.value.email, password: this.formLogin.value.password};
+    this.store.dispatch(AuthAction.trySignIn({credentials: user}));
   }
 
 }

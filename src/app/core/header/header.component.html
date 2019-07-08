@@ -1,8 +1,8 @@
 <div class="container-fluid">
-  <nav *ngIf="(authState | async).authenticated" class="nav justify-content-center">
+  <nav *ngIf="(authState$ | async)" class="nav justify-content-center">
     <a routerLink="/home" routerLinkActive="active">Home</a>
     <a routerLink="/home/first" routerLinkActive="active">First</a>
     <a routerLink="/admin" routerLinkActive="active">Admin</a>
-    <a routerLink="" (click)="onLogout()" routerLinkActive="active" *ngIf="(authState | async).authenticated">Logout</a>
+    <a routerLink="" (click)="onLogout()" routerLinkActive="active" *ngIf="(authState$ | async)">Logout</a>
   </nav>
 </div>

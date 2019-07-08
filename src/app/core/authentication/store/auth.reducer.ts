@@ -1,4 +1,5 @@
 import * as AuthAction from './auth.action';
+import {createReducer, on} from '@ngrx/store';
 
 export interface State {
   token: string;
@@ -10,25 +11,24 @@ const initialState: State = {
   authenticated: false
 };
 
-export function authReducer(state = initialState, action: AuthAction.AuthAction) {
-  switch (action.type) {
-    case 'SIGNIN':
-      return {
-        ...state,
-        authenticated: true
-      };
-    case 'LOGOUT':
-      return {
-        ...state,
-        token: null,
-        authenticated: false
-      };
-    case 'SET_TOKEN':
-      return {
-        ...state,
-        token: action.payload
-      };
-    default:
-      return state;
-  }
-}
+export const reducer = createReducer(
+  initialState,
+  on(AuthAction.signIn,
+    state => ({
+      ...state,
+      authenticated: true
+    })
+  ),
+  on(AuthAction.logOut,
+    state => ({
+      ...state,
+      token: null,
+      authenticated: false
+    })
+  ),
+  on(AuthAction.setToken,
+    (state, {token}) => ({
+      ...state,
+      token: token
+    }))
+);
